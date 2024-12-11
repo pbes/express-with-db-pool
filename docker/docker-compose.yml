@@ -1,0 +1,13 @@
+version: "3.9"
+services:
+  db-pool-example-db:
+    image: 'postgres:17.2-bookworm'
+    container_name: db-pool-example-db
+    hostname: db-pool-example-db
+    ports:
+      - '5432:5432'
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: "dev1"
+      POSTGRES_PASSWORD: "Password1"
+      POSTGRES_DB: "db-pool-example-db"
