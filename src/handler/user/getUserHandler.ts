@@ -3,9 +3,7 @@ import { NotFoundException } from "../../exception/NotFoundException";
 import { UserDTO } from "../../types/user";
 
 export const getUser = async (userId: number): Promise<UserDTO> => {
-    const client = await pool.connect();
-    const { rows } = await client.query(`SELECT * FROM users WHERE id = $1`, [userId]);
-    client.release();
+    const { rows } = await pool.query(`SELECT * FROM users WHERE id = $1`, [userId]);
     if (rows.length === 0) {
         throw new NotFoundException('User not found');
     }
